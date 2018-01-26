@@ -1,0 +1,25 @@
+<div class="header">
+  <h1><%= link_to 'atemo', emos_path %></h1>
+</div>
+
+<div class="container">
+  <h2 class="show-text"><%= @emo.text %></h2>
+  <canvas id="<%= (@emo.emo == 1) ? positive_dom(@emo.point) : negative_dom(@emo.point)%>"></canvas>
+  <%= render (@emo.emo == 1) ? positive_dom(@emo.point) : negative_dom(@emo.point)%>
+</div>
+
+<div class="footer">
+  <% if @emo.emo == 1 %>
+      <h4 class="positive">POSITIVE</h4>
+<% else %>
+      <h4 class="negative">NEGATIVE</h4>
+
+<% end %>
+
+  <div class="mecab">
+    <% @mecab.parse(@emo.text).delete('EOS').each_line.map(&:chomp).each do |txt| %>
+      <h5><%= txt %></h5><br />
+    <% end %>
+  </div>
+
+</div>
