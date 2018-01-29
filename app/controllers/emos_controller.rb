@@ -31,7 +31,27 @@ class EmosController < ApplicationController
     require "negapoji"
 
     @emo.emo = (Negapoji.judge(@emo.text) == 'positive' if @emo.text.is_a?(String)) ? 1 : 0
-    @emo.point = rand(2).to_i
+    @emo.point = Negapoji.pointing(@emo.text) if @emo.text.is_a?(String)
+    @emo.words_points = Negapoji.word_pointing(@emo.text) if @emo.text.is_a?(String)
+
+    the_words_colors = {}
+    @emo.words_points.each do |wp|
+     the_words_colors[wp[0]] = ((wp[1] + 1) / 0.0078).to_i
+    end
+    @emo.words_colors = the_words_colors
+
+    the_rgb = {'r' => 0, 'g' => 0, 'b' => 0}
+    the_p = [1]
+    the_n = [0]
+    @emo.words_colors.each do |wc|
+      mind = (Negapoji.judge(wc[0]) == 'positive' if @emo.text.is_a?(String)) ? 1 : 0
+      (mind == 1) ? the_p.push(wc[1]) : the_n.push(wc[1])
+    end
+    the_rgb['r'] = ((@emo.point + 1) / 0.0078).to_i
+    the_rgb['g'] = (the_p.size % 2).zero? ? the_p[the_p.size/2 - 1, 2].inject(:+) / 2 : the_p[the_p.size/2]
+    the_rgb['b'] = (the_n.size % 2).zero? ? the_n[the_n.size/2 - 1, 2].inject(:+) / 2 : the_n[the_n.size/2]
+    @emo.color = the_rgb
+
     # @emodata = Emo.find_by(text:@emo.text)
     # s = [url:emo_url(@emodata) +'.json','emo':@emodata.emo]
     # return render json: Hash[*s] if @emodata
@@ -78,6 +98,6 @@ class EmosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def emo_params
-      params.require(:emo).permit(:text, :emo, :point)
+      params.require(:emo).permit(:text, :emo, :point, :words_points, :color, :words_colors)
     end
 end

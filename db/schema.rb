@@ -15,7 +15,10 @@ ActiveRecord::Schema.define(version: 20180122191529) do
   create_table "emos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "text"
     t.integer "emo"
-    t.integer "point"
+    t.decimal "point", precision: 10, scale: 10
+    t.text "words_points"
+    t.text "color"
+    t.text "words_colors"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

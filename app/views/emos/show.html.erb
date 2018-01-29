@@ -4,8 +4,16 @@
 
 <div class="container">
   <h2 class="show-text"><%= @emo.text %></h2>
+  <h2 class="show-text"><%= @emo.point.to_f %></h2>
+  <h2 class="show-text"><%= @emo.color %></h2>
+  <h2 class="show-text"><%= @emo.words_points %></h2>
+  <h2 class="show-text"><%= @emo.words_colors %></h2>
   <canvas id="<%= (@emo.emo == 1) ? positive_dom(@emo.point) : negative_dom(@emo.point)%>"></canvas>
-  <%= render (@emo.emo == 1) ? positive_dom(@emo.point) : negative_dom(@emo.point)%>
+  <style>
+    .container {
+      background-color: rgb(<%= @emo.color['r'] %>, <%= @emo.color['g'] %>, <%= @emo.color['b'] %>);
+    }
+  </style>
 </div>
 
 <div class="footer">
@@ -13,7 +21,6 @@
       <h4 class="positive">POSITIVE</h4>
 <% else %>
       <h4 class="negative">NEGATIVE</h4>
-
 <% end %>
 
   <div class="mecab">
