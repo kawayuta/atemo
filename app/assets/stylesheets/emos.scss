@@ -4,11 +4,11 @@
 @import url('https://fonts.googleapis.com/css?family=Muli');
 
 .header {
-  //background: rgb(61,31,75);
-  //background: -moz-linear-gradient(-45deg, rgba(9,22,54,0.8) 45%, rgba(61,31,75,0.8) 100%);
-  //background: -webkit-linear-gradient(-45deg, rgba(9,22,54,0.8) 45%, rgba(61,31,75,0.8) 100%);
-  //background: linear-gradient(135deg, rgba(9,22,54,0.8) 45%, rgba(61,31,75,0.8) 100%);
-  //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d1f4b', endColorstr='#091636',GradientType=1 );
+  background: rgb(61,31,75);
+  background: -moz-linear-gradient(-45deg, rgba(9,22,54,0.8) 45%, rgba(61,31,75,0.8) 100%);
+  background: -webkit-linear-gradient(-45deg, rgba(9,22,54,0.8) 45%, rgba(61,31,75,0.8) 100%);
+  background: linear-gradient(135deg, rgba(9,22,54,0.8) 45%, rgba(61,31,75,0.8) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d1f4b', endColorstr='#091636',GradientType=1 );
   height:70px;
   position: relative;
   & h1 {
@@ -40,6 +40,7 @@
   position: relative;
   z-index:3;
   height:100vh;
+  background: hsl(120, 50%, 50%);
   & h1 {
     color:#FFF;
     letter-spacing: 6px;
@@ -171,7 +172,7 @@
   //background: linear-gradient(135deg, rgba(9,22,54,0.8) 45%, rgba(61,31,75,0.8) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d1f4b', endColorstr='#091636',GradientType=1 );
   width:100%;
-  height:100%;
+  height:auto;
   position: fixed;
   bottom:0;
   z-index: 6;
